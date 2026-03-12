@@ -3,7 +3,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>拼贴风格高级海报生成器 - 古月AI智能体</title>
+<title>渐变风格高级海报生成器 - 古月AI智能体</title>
 
 <style>
 * {
@@ -33,8 +33,8 @@ h1 {
   font-size: 36px;
   margin-bottom: 40px;
   font-weight: 600;
-  color: #f59e0b;
-  text-shadow: 0 0 12px rgba(245, 158, 11, 0.6);
+  color: #f472b6;
+  text-shadow: 0 0 12px rgba(244, 114, 182, 0.6);
 }
 
 .card {
@@ -67,8 +67,8 @@ input, textarea {
 
 input:focus, textarea:focus {
   outline: none;
-  box-shadow: 0 0 8px #f59e0b;
-  border-color: #f59e0b;
+  box-shadow: 0 0 8px #f472b6;
+  border-color: #f472b6;
 }
 
 textarea {
@@ -82,13 +82,13 @@ button {
   border-radius: 8px;
   cursor: pointer;
   font-size: 16px;
-  background: linear-gradient(135deg, #f59e0b, #facc15);
+  background: linear-gradient(135deg, #f472b6, #f9a8d4);
   color: white;
   transition: 0.3s;
 }
 
 button:hover {
-  background: linear-gradient(135deg, #facc15, #f59e0b);
+  background: linear-gradient(135deg, #f9a8d4, #f472b6);
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
 }
@@ -100,7 +100,7 @@ button:hover {
 
 .results {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(450px,1fr));
   gap: 20px;
   margin-top: 30px;
 }
@@ -117,14 +117,14 @@ button:hover {
 
 .promptCard:hover {
   transform: scale(1.02);
-  box-shadow: 0 0 25px rgba(245, 158, 11, 0.5);
+  box-shadow: 0 0 25px rgba(244, 114, 182, 0.5);
 }
 
 .promptTitle {
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 10px;
-  color: #facc15;
+  color: #f9a8d4;
 }
 
 .promptText {
@@ -138,7 +138,7 @@ button:hover {
   padding: 8px 14px;
   font-size: 14px;
   border-radius: 6px;
-  background: linear-gradient(135deg, #10b981, #059669);
+  background: linear-gradient(135deg, #3b82f6, #60a5fa);
   color: #fff;
   cursor: pointer;
   border: none;
@@ -158,16 +158,16 @@ button:hover {
 <body>
 
 <div class="container">
-<h1>拼贴风格高级海报生成器 - 古月AI智能体</h1>
+<h1>渐变风格高级海报生成器 - 古月AI智能体</h1>
 
 <div class="card">
 <label>海报主题 / 产品名称</label>
-<input id="title" placeholder="例如：潮流艺术联名">
+<input id="title" placeholder="例如：科技潮流新品">
 
 <label>海报副标题 / 说明</label>
-<input id="subtitle" placeholder="例如：多元素叠加的视觉盛宴">
+<input id="subtitle" placeholder="例如：色彩渐变丰富、视觉冲击力强">
 
-<label>辅助文字（可选，如 新品上线 / 限时活动）</label>
+<label>辅助文字（可选，如 新品发布 / 限时活动）</label>
 <textarea id="assist" placeholder="可添加少量辅助信息"></textarea>
 
 <button class="generate" onclick="generate()">生成20组提示词</button>
@@ -183,22 +183,22 @@ function rand(arr){
 }
 
 let assistOptions = [
-  "新品上线", "限时活动", "潮流推荐", "艺术展", "独家发售", "VIP专享"
+  "新品发布", "限时活动", "热卖推荐", "独家发售", "VIP专享", "限量上架"
 ];
 
 let visuals = [
-  "产品主体", "人物照片", "手绘插画", "纹理素材", "图标元素", "装饰图形", "抽象图案"
+  "产品主体", "人物形象", "抽象图形", "图标元素", "装饰图形", "光影元素", "渐变背景"
 ];
 
 let techniques = [
-  "多层叠加", "素材拼接", "光影混合", "色彩撞击", "纹理融合", "剪影处理", "蒙版叠加", "透视变化"
+  "渐变色背景", "光影柔和", "色彩渐变叠加", "层次丰富", "反射效果", "折射效果", "柔焦处理"
 ];
 
 let layouts = [
-  "主标题突出居中", "副标题下方创意排列", "辅助文字角落排列", "标题占画面35%", "倾斜排版", "错位叠加", "层次分明排版"
+  "主标题突出居中", "副标题下方排列", "辅助文字角落排列", "标题占画面35%", "现代无衬线字体", "潮流渐变风格字体", "层次分明排版"
 ];
 
-let styleDesc = "拼贴风格、多元素混搭、层次丰富、色彩饱满、视觉冲击力强、整体创意感突出";
+let styleDesc = "渐变风格、色彩柔和丰富、光影层次分明、视觉冲击力强、现代感突出、整体氛围高级";
 
 function generate(){
   let title = document.getElementById("title").value.trim();

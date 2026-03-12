@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+<meta charset="UTF-8">
+<title>拼贴风格高级海报生成器 - 古月AI智能体</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Microsoft YaHei", sans-serif;
+}
+
+body {
+  background:
+    radial-gradient(circle at 20% 20%, #1e293b 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, #312e81 0%, transparent 40%),
+    linear-gradient(160deg, #020617, #020617);
+  min-height: 100vh;
+  color: #e2e8f0;
+  padding: 60px 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+h1 {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 40px;
+  font-weight: 600;
+  color: #f59e0b;
+  text-shadow: 0 0 12px rgba(245, 158, 11, 0.6);
+}
+
+.card {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(18px);
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4),
+              inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  margin-bottom: 30px;
+}
+
+label {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 14px;
+  margin-top: 8px;
+  margin-bottom: 18px;
+  background: rgba(2, 6, 23, 0.9);
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  box-shadow: 0 0 8px #f59e0b;
+  border-color: #f59e0b;
+}
+
+textarea {
+  height: 80px;
+  resize: none;
+}
+
+button {
+  padding: 14px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  background: linear-gradient(135deg, #f59e0b, #facc15);
+  color: white;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #facc15, #f59e0b);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+}
+
+.generate {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.promptCard {
+  background: rgba(2, 6, 23, 0.95);
+  border: 1px solid #1e293b;
+  padding: 22px;
+  border-radius: 14px;
+  line-height: 1.7;
+  position: relative;
+  transition: 0.3s;
+}
+
+.promptCard:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.5);
+}
+
+.promptTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #facc15;
+}
+
+.promptText {
+  white-space: pre-wrap;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.copyBtn {
+  margin-top: 16px;
+  padding: 8px 14px;
+  font-size: 14px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  transition: 0.3s;
+}
+
+.copyBtn:hover {
+  transform: scale(1.05);
+}
+
+.copyBtn.copied {
+  background: #334155;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h1>拼贴风格高级海报生成器 - 古月AI智能体</h1>
+
+<div class="card">
+<label>海报主题 / 产品名称</label>
+<input id="title" placeholder="例如：潮流艺术联名">
+
+<label>海报副标题 / 说明</label>
+<input id="subtitle" placeholder="例如：多元素叠加的视觉盛宴">
+
+<label>辅助文字（可选，如 新品上线 / 限时活动）</label>
+<textarea id="assist" placeholder="可添加少量辅助信息"></textarea>
+
+<button class="generate" onclick="generate()">生成20组提示词</button>
+</div>
+
+<div id="results" class="results"></div>
+
+</div>
+
+<script>
+function rand(arr){
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+let assistOptions = [
+  "新品上线", "限时活动", "潮流推荐", "艺术展", "独家发售", "VIP专享"
+];
+
+let visuals = [
+  "产品主体", "人物照片", "手绘插画", "纹理素材", "图标元素", "装饰图形", "抽象图案"
+];
+
+let techniques = [
+  "多层叠加", "素材拼接", "光影混合", "色彩撞击", "纹理融合", "剪影处理", "蒙版叠加", "透视变化"
+];
+
+let layouts = [
+  "主标题突出居中", "副标题下方创意排列", "辅助文字角落排列", "标题占画面35%", "倾斜排版", "错位叠加", "层次分明排版"
+];
+
+let styleDesc = "拼贴风格、多元素混搭、层次丰富、色彩饱满、视觉冲击力强、整体创意感突出";
+
+function generate(){
+  let title = document.getElementById("title").value.trim();
+  let subtitle = document.getElementById("subtitle").value.trim();
+  let assistInput = document.getElementById("assist").value.trim();
+
+  if(!title){
+    alert("请输入海报主题或产品名称");
+    return;
+  }
+
+  let container = document.getElementById("results");
+  container.innerHTML = "";
+
+  for(let i=1;i<=20;i++){
+    let assistText = assistInput ? assistInput : rand(assistOptions);
+
+    let text = `主标题：${title}
+副标题：${subtitle}
+辅助文字：${assistText}
+核心视觉元素：${rand(visuals)}、${rand(visuals)}、${rand(visuals)}
+视觉表现手法：${rand(techniques)}、${rand(techniques)}、${rand(techniques)}
+文字布局：${rand(layouts)}、${rand(layouts)}
+风格描述：${styleDesc}`;
+
+    let card = document.createElement("div");
+    card.className = "promptCard";
+    card.innerHTML = `
+      <div class="promptTitle">提示词 #${i}</div>
+      <div class="promptText">${text}</div>
+      <button class="copyBtn">复制提示词</button>
+    `;
+
+    let btn = card.querySelector("button");
+    btn.onclick = function(){
+      navigator.clipboard.writeText(text);
+      btn.innerText = "已复制";
+      btn.classList.add("copied");
+      setTimeout(()=>{
+        btn.innerText = "复制提示词";
+        btn.classList.remove("copied");
+      },3000);
+    }
+
+    container.appendChild(card);
+  }
+}
+</script>
+
+</body>
+</html>
